@@ -1,3 +1,23 @@
-<p>
-  task works!
-</p>
+<div class="input-group">
+  <input type="text" class="form-control" placeholder="Create Task" #itemTitle>
+  <div class="input-group-append">
+    <button 
+      class="btn btn-outline-secondary"
+      (click)="addTask(itemTitle)"
+      >
+      <i class="fas fa-plus-circle"></i>
+    </button>
+  </div>
+</div>
+
+<ul class="list-group mt-4">
+  <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" *ngFor="let task of taskListArray">
+    <span class="cursor-hover" [class.text-success]="task.isChecked" (click)="updateTask(task.$key, task.isChecked)">
+      <i [ngClass]="task.isChecked ? 'fas fa-check-circle': 'far fa-circle'"></i>
+    </span>
+     {{task.title}}
+    <span class="text-danger cursor-hover" (click)="deleteTask(task.$key)">
+        <i class="far fa-trash-alt"></i>
+    </span>
+  </li>
+</ul>
